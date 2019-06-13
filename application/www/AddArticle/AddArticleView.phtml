@@ -1,0 +1,41 @@
+<h2>Ajout d'un article alimentaire dan sle catalogue</h2>
+<form method="POST" >
+    <fieldset>
+        <legend>Cractéristique</legend>
+        <label for="name">Nom :</label>
+        <input type="text" name="name" id="name"><br>
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" rows="5" cols="33"></textarea><br>
+        <label for="picturs">Photo :</label>
+        <input type="file" id="picturs" name="avatar">
+        <p>Merci de renommer le nom du fichier avant de lenvoyer !</p>
+    </fieldset>
+    <fieldset>
+        <legend>Approvisionnement</legend>
+        <label for="stock">stock initial :</label>
+        <input type="text" name="stock" id="stock"><br>
+        <label for="buyPrice">Prix d'achat :</label>
+        <input type="text" name="buyPrice" id="buyPrice"><br>
+        <label for="salePrice">Prix de vente :</label>
+        <input type="text" name="salePrice" id="salePrice"><br>
+    </fieldset>
+    <button type="submit" class="button button-primary">Ajouter</button>
+    <button type='reset' class="button button-cancel">Annuler</button>
+    </form>
+    <form method='POST' action='<?= $requestUrl ?>/RemoveMeal'>
+        <fieldset>
+            <legend>Retirer article</legend>
+          
+            <ul>
+                <?php foreach($nameMeal as $mil) : ?>
+                    <li><?= $mil['Name'] ?> <?=$mil['SalePrice'] ?>€ 
+                    <input type="checkbox" name="selectMeal[]" value="<?= $mil["Id"]; ?>" ?></li>
+                    
+                    
+                <?php endforeach;  ?>
+            </ul>
+            <input type="submit" value="Supprimer" class="button button-primary">
+            <input type="reset" value="Annuler" class="button button-cancel">
+        </fieldset>
+    </form>
+

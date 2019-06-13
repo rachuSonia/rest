@@ -1,0 +1,32 @@
+<!-- Message de notification -->
+
+<!-- Code HTML à écrire -->
+
+<nav class="user-interface">
+    <ul class="link-list">
+        
+        <!-- Code HTML/PHP à écrire -->
+        <button class='button button-primary'> <a href="<?= $requestUrl ?>/user/register">Creer un compte</a></button>
+        <button class='button button-primary btnConnect'> <a href="<?= $requestUrl ?>/user/login">Connexion</a></button>
+    </ul>
+</nav>
+
+<main>
+<!-- Liste des aliments -->
+<table class="generic-table meal-list">
+    <caption>Carte du restaurant</caption>
+    <tbody>
+        <!-- Code HTML à écrire -->
+        
+        <?php  foreach($meals as $mil) : ?>
+        
+            <tr>
+                <td><img src="<?= $wwwUrl ?>/images/meals/<?= $mil['Photo']; ?>" alt='burger'></td>
+                
+                <td><strong><?= $mil['Name'].'</strong><br>'.$mil['Description']; ?></td>
+                <td><?= $mil['SalePrice']; ?> €</td>
+            </tr>          
+                
+        <?php endforeach; ?>
+    </tbody>
+</table>

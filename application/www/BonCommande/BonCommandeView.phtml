@@ -1,0 +1,30 @@
+<h2>Payer la commande</h2>
+
+<?php if(isset($_SESSION['user'])): ?>
+    <p>Bonjour <?= $_SESSION['user']['FirstName'] . ' ' . $_SESSION['user']['LastName']; ?></p>
+    <p><?= $_SESSION['user']['Address'] ?></p>
+    <p><?=  $_SESSION['user']['ZipCode'] .' '. $_SESSION['user']['City'] ?></p>
+    <p><?= $_SESSION['user']['Country'] ?></p>
+<?php endif; ?>
+<form>
+    <fieldset>
+        <legend>Récapitulatif de la commande</legend>
+<table class="generic-table">
+    <tbody>
+        <tr>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th>Prix Total</th>
+            <?php  foreach($panier as $mil) : ?>
+            <tr> 
+                <td><strong><?= $mil['name']; ?></strong></td>
+                <td> <?= $mil['amount']; ?></td>                           
+                <td><?= $mil['price']; ?> €</td>
+                <td><?= $mil['price']*$mil['amount']; ?> €</td>  
+             </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+</fieldset>
+</form>

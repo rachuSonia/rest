@@ -1,0 +1,55 @@
+
+<?php if(isset($_SESSION['user'])): ?>
+    <p>Bonjour <?= $_SESSION['user']['FirstName'] . ' ' . $_SESSION['user']['LastName']; ?></p>
+
+<button class="button button-primary btnConnect2" type='submit' name='loginOut'><a href="<?= $requestUrl ?>/LoginOut">Déconnexion</a></button>
+    <?php endif; ?>
+</ul>
+<h2>Passer une commande</h2>
+<form method='POST' action="<?= $requestUrl ?>/Panier" class="generic-form">
+    <fieldset>
+        <legend>Ajouter un article</legend>
+        <label for='meals'>Nom :</label>
+        <select id='meals' name="mealId">
+                <?php foreach($meals as $key=>$value) : ?>
+                    <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
+                <?php endforeach; ?>
+                
+        </select><br>
+        <section id="target">
+            <h3 class="mealName"></h3>
+            <p class="mealDesc"></p>
+      
+        </section>
+
+        <label for='amount'>Quantité</label>
+        <input type="text" name='amount' id='amount' value='1'><br>
+        <button type='submit' value="Ajouter" class="button button-primary">Ajouter</button>
+    </fieldset>
+    <fieldset>
+        <legend>Récapitulatif de la commande</legend>
+            <table class="generic-table">
+                <tbody>
+                    <tr>
+                        <th>Quanttié</th>
+                        <th>Produit</th>
+                        <th>Prix Unitaire</th>
+                        <th>Prix Total</th>
+                     </tr>
+                     <?php  foreach($paniers as $mil) : ?>
+                
+                     <tr> 
+                        <td> <?= $mil['amount']; ?></td>                           
+                         <td><strong><?= $mil['name']; ?></strong></td>
+                        <td><?= $mil['price']; ?> €</td>
+                        <td><?= $mil['price']*$mil['amount']; ?> €</td>  
+                        <td><a class="button button-primary" href="<?= $requestUrl ?>/Delete?mealId=<?= $mil['id'] ?>">supprimer</a></td>
+                    </tr>                              
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <button class="button button-cancel" type="submit"><a href="<?= $requestUrl ?>/Clear">Clear</a></button> 
+    </fieldset>
+    <button class="button button-primary"><a href="<?= $requestUrl ?>/BonCommande">Valider la commande</a></button>
+    <button class="button button-cancel"><a href="<?= $requestUrl ?>">Annuler</a></button>
+</form>
